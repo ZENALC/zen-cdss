@@ -1,0 +1,8 @@
+[FORMAT]
+max-line-length = 120
+
+# Good variable names which should always be accepted, separated by a comma.
+good-names=tg
+
+[MASTER]
+jobs=4
