@@ -2,12 +2,12 @@ from typing import Union
 
 import pytest
 
-from backend.formulas.basic_vitals import (get_homa_ir, get_bmi, get_blood_pressure, get_maximum_heart_rate,
+from backend.formulas.basic_vitals import (GENDER_ERROR_MESSAGE, get_alt_ast_ratio, get_atherogenic_index_of_plasma,
+                                           get_blood_pressure, get_bmi, get_body_adiposity_index, get_egfr,
+                                           get_estimated_average_glucose, get_fatty_liver_index, get_homa_ir,
+                                           get_lipid_accumulation_product, get_maximum_heart_rate,
                                            get_target_heart_rate, get_tg_hdl_ratio, get_triglyceride_glucose_index,
-                                           get_atherogenic_index_of_plasma, get_body_adiposity_index,
-                                           get_visceral_adiposity_index, get_lipid_accumulation_product,
-                                           get_fatty_liver_index, get_waist_height_ratio, get_alt_ast_ratio, get_egfr,
-                                           get_estimated_average_glucose, GENDER_ERROR_MESSAGE)
+                                           get_visceral_adiposity_index, get_waist_height_ratio)
 
 
 @pytest.mark.parametrize(
