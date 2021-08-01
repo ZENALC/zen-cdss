@@ -9,6 +9,9 @@ Base = declarative_base()
 
 
 class Patient(Base):
+    """
+    Patient database table.
+    """
     __table__name = "Patient"
     id = Column(Integer, primary_key=True)
     first_name = Column(String(50))
