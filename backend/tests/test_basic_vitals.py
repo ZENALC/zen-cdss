@@ -1,3 +1,7 @@
+"""
+Test file to test basic vitals.py.
+"""
+
 from typing import Union
 
 import pytest

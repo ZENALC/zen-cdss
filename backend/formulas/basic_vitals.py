@@ -1,6 +1,7 @@
 """
 Basic formula functions for getting vitals.
 """
+
 import math
 
 GENDER_ERROR_MESSAGE = "Unknown type of gender provided. Valid genders are M and F for male and female respectively."
@@ -69,16 +70,16 @@ def get_blood_pressure(systolic_bp: int, diastolic_bp: int):
     """
     if systolic_bp >= 180 or diastolic_bp >= 110:
         return 'Grade 3'
-    elif systolic_bp >= 160 or diastolic_bp >= 100:
+    if systolic_bp >= 160 or diastolic_bp >= 100:
         return 'Grade 2'
-    elif systolic_bp >= 140 or diastolic_bp >= 90:
+    if systolic_bp >= 140 or diastolic_bp >= 90:
         return 'Grade 1'
-    elif systolic_bp < 90 or diastolic_bp < 60:
+    if systolic_bp < 90 or diastolic_bp < 60:
         return 'Low'
-    elif 89 < systolic_bp < 121 and 59 < diastolic_bp < 81:
+    if 89 < systolic_bp < 121 and 59 < diastolic_bp < 81:
         return 'Ideal'
-    else:
-        return 'Normal'
+
+    return 'Normal'
 
 
 def get_maximum_heart_rate(age: int) -> int:
@@ -195,10 +196,10 @@ def get_visceral_adiposity_index(gender: str, waist: float, tg: int, hdl: int, b
     """
     if gender == 'M':
         return round(waist / 39.68 + (1.88 * bmi) * (tg / 88.57 / 1.03) * (1.31 / hdl / 38.67), round_digits)
-    elif gender == 'F':
+    if gender == 'F':
         return round(waist / 36.58 + (1.89 * bmi) * (tg / 88.57 / 0.81) * (1.52 / hdl / 38.67), round_digits)
-    else:
-        raise ValueError(GENDER_ERROR_MESSAGE)
+
+    raise ValueError(GENDER_ERROR_MESSAGE)
 
 
 def get_lipid_accumulation_product(gender: str, waist: float, tg: float, round_digits: int = 2) -> float:
@@ -220,10 +221,10 @@ def get_lipid_accumulation_product(gender: str, waist: float, tg: float, round_d
     """
     if gender == 'M':
         return round((waist - 65) * (tg / 88.57), round_digits)
-    elif gender == 'F':
+    if gender == 'F':
         return round((waist - 58) * (tg / 88.57), round_digits)
-    else:
-        raise ValueError(GENDER_ERROR_MESSAGE)
+
+    raise ValueError(GENDER_ERROR_MESSAGE)
 
 
 def get_fatty_liver_index(tg: float, ggt: float, waist: float, bmi: float, round_digits: int = 0) -> float:
