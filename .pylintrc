@@ -7,3 +7,7 @@ good-names=tg
 
 [MASTER]
 jobs=4
+
+[MESSAGES CONTROL]
+disable=
+    import-error
