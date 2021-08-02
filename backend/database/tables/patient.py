@@ -97,7 +97,7 @@ class ContactDetails(Base):  # pylint: disable=too-few-public-methods
         self.patient = patient
 
 
-class Occupation(Base):
+class Occupation(Base):  # pylint: disable=too-few-public-methods
     """
     Occupation table.
     """
@@ -113,7 +113,7 @@ class Occupation(Base):
     company = relationship("Company", backref="occupation")
 
 
-class OccupationTitle(Base):
+class OccupationTitle(Base):  # pylint: disable=too-few-public-methods
     """
     Occupation title.
     """
@@ -123,7 +123,7 @@ class OccupationTitle(Base):
     occupation_title = Column(String)
 
 
-class Company(Base):
+class Company(Base):  # pylint: disable=too-few-public-methods
     """
     Company table.
     """
