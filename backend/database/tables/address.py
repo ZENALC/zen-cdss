@@ -18,16 +18,16 @@ class Address(Base):  # pylint: disable=too-few-public-methods
     address = Column(String)
 
     village_id = Column(Integer, ForeignKey('village.id'))
-    village = relationship("Village", backref=backref("address", uselist=False))
+    village = relationship("Village", backref=backref("address"))
 
     municipality_id = Column(Integer, ForeignKey('municipality.id'))
-    municipality = relationship("Municipality", backref=backref("address", uselist=False))
+    municipality = relationship("Municipality", backref=backref("address"))
 
     district_id = Column(Integer, ForeignKey('district.id'))
-    district = relationship("District", backref=backref("address", uselist=False))
+    district = relationship("District", backref=backref("address"))
 
     province_id = Column(Integer, ForeignKey('province.id'))
-    province = relationship("Province", backref=backref("address", uselist=False))
+    province = relationship("Province", backref=backref("address"))
 
     patient_id = Column(Integer, ForeignKey('patient.id'))
     patient = relationship("Patient", backref="address")
