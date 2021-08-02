@@ -10,4 +10,5 @@ jobs=4
 
 [MESSAGES CONTROL]
 disable=
-    import-error
+    import-error,
+    fixme # This is for TODOs.

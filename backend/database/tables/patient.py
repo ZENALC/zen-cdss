@@ -83,7 +83,7 @@ class ContactDetails(Base):  # pylint: disable=too-few-public-methods
     phone_number = Column(String)
     email = Column(String)
 
-    patient_id = Column(Integer, ForeignKey('patient.id'))
+    patient_id = Column(Integer, ForeignKey("patient.id"))
     patient = relationship("Patient", backref="contact_details")
 
     def __init__(
@@ -95,3 +95,39 @@ class ContactDetails(Base):  # pylint: disable=too-few-public-methods
         self.phone_number = phone_number
         self.email = email
         self.patient = patient
+
+
+class Occupation(Base):
+    """
+    Occupation table.
+    """
+    __tablename__ = "occupation"
+
+    id = Column(Integer, primary_key=True)
+    description = Column(String)
+
+    occupation_title_id = Column(Integer, ForeignKey("occupation_title.id"))
+    occupation_title = relationship("OccupationTitle", backref="occupation")
+
+    company_id = Column(Integer, ForeignKey("company.id"))
+    company = relationship("Company", backref="occupation")
+
+
+class OccupationTitle(Base):
+    """
+    Occupation title.
+    """
+    __tablename__ = "occupation_title"
+
+    id = Column(Integer, primary_key=True)
+    occupation_title = Column(String)
+
+
+class Company(Base):
+    """
+    Company table.
+    """
+    __tablename__ = "company"
+
+    id = Column(Integer, primary_key=True)
+    company = Column(String)
