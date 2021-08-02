@@ -2,7 +2,8 @@
 Address related tables for patients.
 """
 
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, ForeignKey, Integer, String
+
 from backend.database.base import Base
 
 

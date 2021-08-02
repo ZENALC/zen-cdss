@@ -2,7 +2,8 @@
 Patient table.
 """
 
-from sqlalchemy import Column, Integer, String, Date
+from sqlalchemy import Column, Date, Integer, String
+
 from backend.database.base import Base
 
 
