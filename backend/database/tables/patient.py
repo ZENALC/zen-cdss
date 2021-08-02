@@ -21,6 +21,7 @@ class Patient(Base):  # pylint: disable=too-few-public-methods
 
     first_name = Column(String(50))
     last_name = Column(String(50))
+    gender = Column(String(1))
     date_of_birth = Column(Date)
     registration_date = Column(Date)
 
@@ -28,13 +29,31 @@ class Patient(Base):  # pylint: disable=too-few-public-methods
             self,
             first_name: str,
             last_name: str,
+            gender: str,
             date_of_birth: Union[str, date],
             registration_date: Optional[Union[str, date]] = None,
     ):
         self.first_name = first_name
         self.last_name = last_name
+        self.gender = self.parse_gender(gender)
         self.date_of_birth = self.parse_date(date_of_birth)
         self.registration_date = self.parse_date(registration_date, null_ok=True)
+
+    @staticmethod
+    def parse_gender(gender: str) -> str:
+        """
+        Parse gender and return parsed gender value.
+        :param gender: Gender to parse.
+        :return: Parsed gender value.
+        """
+        gender_upper = gender.upper()
+        if gender_upper in {'MALE', 'M'}:
+            return 'M'
+
+        if gender_upper in {'FEMALE', 'F'}:
+            return 'F'
+
+        raise ValueError(f'Expected gender to be "M" or "F". Got: {gender}')
 
     @staticmethod
     def parse_date(date_object: Union[str, date], null_ok: bool = False) -> date:
