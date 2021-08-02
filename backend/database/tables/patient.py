@@ -6,11 +6,11 @@ from sqlalchemy import Column, Integer, String, Date
 from backend.database.base import Base
 
 
-class Patient(Base):
+class Patient(Base):  # pylint: disable=too-few-public-methods
     """
     Patient table.
     """
-    __table__name = "patient"
+    __tablename__ = "patient"
 
     id = Column(Integer, primary_key=True)
     first_name = Column(String(50))

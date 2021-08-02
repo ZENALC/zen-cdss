@@ -6,11 +6,11 @@ from sqlalchemy import Column, Integer, String, ForeignKey
 from backend.database.base import Base
 
 
-class Address(Base):
+class Address(Base):  # pylint: disable=too-few-public-methods
     """
     Address table.
     """
-    __table__name = "address"
+    __tablename__ = "address"
 
     id = Column(Integer, primary_key=True)
     tole_id = Column(Integer, ForeignKey('tole.id'))
@@ -27,11 +27,11 @@ class Address(Base):
         self.last_name = last_name
 
 
-class Tole(Base):
+class Tole(Base):  # pylint: disable=too-few-public-methods
     """
     Tole table.
     """
-    __table__name = "tole"
+    __tablename__ = "tole"
 
     id = Column(Integer, primary_key=True)
     tole = Column(String(50))
@@ -43,11 +43,11 @@ class Tole(Base):
         self.tole = tole
 
 
-class Municipality(Base):
+class Municipality(Base):  # pylint: disable=too-few-public-methods
     """
     Municipality table.
     """
-    ___table__name = "municipality"
+    __tablename__ = "municipality"
 
     id = Column(Integer, primary_key=True)
     municipality = Column(String(50))
@@ -59,11 +59,11 @@ class Municipality(Base):
         self.municipality = municipality
 
 
-class District(Base):
+class District(Base):  # pylint: disable=too-few-public-methods
     """
     District table.
     """
-    __table__name = "district"
+    __tablename__ = "district"
 
     id = Column(Integer, primary_key=True)
     district = Column(String(50))
@@ -75,11 +75,11 @@ class District(Base):
         self.district = district
 
 
-class Province(Base):
+class Province(Base):  # pylint: disable=too-few-public-methods
     """
     Province table.
     """
-    __table__name = "province"
+    __tablename__ = "province"
 
     id = Column(Integer, primary_key=True)
     province = Column(String(50))
