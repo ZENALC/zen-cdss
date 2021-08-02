@@ -18,6 +18,7 @@ class Patient(Base):  # pylint: disable=too-few-public-methods
     __tablename__ = "patient"
 
     id = Column(Integer, primary_key=True)
+
     first_name = Column(String(50))
     last_name = Column(String(50))
     date_of_birth = Column(Date)
@@ -55,8 +56,10 @@ class ContactDetails(Base):  # pylint: disable=too-few-public-methods
     __tablename__ = "contact_details"
 
     id = Column(Integer, primary_key=True)
+
     phone_number = Column(String)
     email = Column(String)
+
     patient_id = Column(Integer, ForeignKey('patient.id'))
     patient = relationship("Patient", backref="contact_details")
 

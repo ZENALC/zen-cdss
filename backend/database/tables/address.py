@@ -3,6 +3,7 @@ Address related tables for patients.
 """
 
 from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy.orm import backref, relationship
 
 from backend.database.base import Base
 
@@ -14,18 +15,28 @@ class Address(Base):  # pylint: disable=too-few-public-methods
     __tablename__ = "address"
 
     id = Column(Integer, primary_key=True)
+    address = Column(String)
+
     village_id = Column(Integer, ForeignKey('village.id'))
+    village = relationship("Village", backref=backref("address", uselist=False))
+
     municipality_id = Column(Integer, ForeignKey('municipality.id'))
+    municipality = relationship("Municipality", backref=backref("address", uselist=False))
+
     district_id = Column(Integer, ForeignKey('district.id'))
+    district = relationship("District", backref=backref("address", uselist=False))
+
     province_id = Column(Integer, ForeignKey('province.id'))
+    province = relationship("Province", backref=backref("address", uselist=False))
+
+    patient_id = Column(Integer, ForeignKey('patient.id'))
+    patient = relationship("Patient", backref="address")
 
     def __init__(
             self,
-            first_name: str,
-            last_name: str
+            address: str,
     ):
-        self.first_name = first_name
-        self.last_name = last_name
+        self.address = address
 
 
 class Village(Base):  # pylint: disable=too-few-public-methods
