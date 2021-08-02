@@ -6,37 +6,7 @@ from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import backref, relationship
 
 from backend.database.base import Base
-
-
-class Address(Base):  # pylint: disable=too-few-public-methods
-    """
-    Address table.
-    """
-    __tablename__ = "address"
-
-    id = Column(Integer, primary_key=True)
-    address = Column(String)
-
-    village_id = Column(Integer, ForeignKey('village.id'))
-    village = relationship("Village", backref=backref("address"))
-
-    municipality_id = Column(Integer, ForeignKey('municipality.id'))
-    municipality = relationship("Municipality", backref=backref("address"))
-
-    district_id = Column(Integer, ForeignKey('district.id'))
-    district = relationship("District", backref=backref("address"))
-
-    province_id = Column(Integer, ForeignKey('province.id'))
-    province = relationship("Province", backref=backref("address"))
-
-    patient_id = Column(Integer, ForeignKey('patient.id'))
-    patient = relationship("Patient", backref="address")
-
-    def __init__(
-            self,
-            address: str,
-    ):
-        self.address = address
+from backend.database.tables.patient import Patient
 
 
 class Village(Base):  # pylint: disable=too-few-public-methods
@@ -101,3 +71,44 @@ class Province(Base):  # pylint: disable=too-few-public-methods
             province: str
     ):
         self.province = province
+
+
+class Address(Base):  # pylint: disable=too-few-public-methods
+    """
+    Address table.
+    """
+    __tablename__ = "address"
+
+    id = Column(Integer, primary_key=True)
+    address = Column(String)
+
+    village_id = Column(Integer, ForeignKey('village.id'))
+    village = relationship("Village", backref=backref("address"))
+
+    municipality_id = Column(Integer, ForeignKey('municipality.id'))
+    municipality = relationship("Municipality", backref=backref("address"))
+
+    district_id = Column(Integer, ForeignKey('district.id'))
+    district = relationship("District", backref=backref("address"))
+
+    province_id = Column(Integer, ForeignKey('province.id'))
+    province = relationship("Province", backref=backref("address"))
+
+    patient_id = Column(Integer, ForeignKey('patient.id'))
+    patient = relationship("Patient", backref="address")
+
+    def __init__(
+            self,
+            address: str,
+            village: Village,
+            municipality: Municipality,
+            district: District,
+            province: Province,
+            patient: Patient
+    ):
+        self.address = address
+        self.village = village
+        self.municipality = municipality
+        self.district = district
+        self.province = province
+        self.patient = patient
