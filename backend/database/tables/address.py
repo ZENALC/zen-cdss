@@ -14,7 +14,7 @@ class Address(Base):  # pylint: disable=too-few-public-methods
     __tablename__ = "address"
 
     id = Column(Integer, primary_key=True)
-    tole_id = Column(Integer, ForeignKey('tole.id'))
+    village_id = Column(Integer, ForeignKey('village.id'))
     municipality_id = Column(Integer, ForeignKey('municipality.id'))
     district_id = Column(Integer, ForeignKey('district.id'))
     province_id = Column(Integer, ForeignKey('province.id'))
@@ -28,20 +28,20 @@ class Address(Base):  # pylint: disable=too-few-public-methods
         self.last_name = last_name
 
 
-class Tole(Base):  # pylint: disable=too-few-public-methods
+class Village(Base):  # pylint: disable=too-few-public-methods
     """
-    Tole table.
+    Village table.
     """
-    __tablename__ = "tole"
+    __tablename__ = "village"
 
     id = Column(Integer, primary_key=True)
-    tole = Column(String(50))
+    village = Column(String(50))
 
     def __init__(
             self,
-            tole: str
+            village: str
     ):
-        self.tole = tole
+        self.village = village
 
 
 class Municipality(Base):  # pylint: disable=too-few-public-methods
