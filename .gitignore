@@ -3,3 +3,6 @@
 
 # Ignore databases.
 *.db
+
+# Ignore all data related files.
+data/

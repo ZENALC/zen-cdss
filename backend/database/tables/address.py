@@ -1,6 +1,7 @@
 """
 Address related tables for patients.
 """
+from typing import Optional
 
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import backref, relationship
@@ -100,10 +101,10 @@ class Address(Base):  # pylint: disable=too-few-public-methods
     def __init__(
             self,
             address: str,
-            village: Village,
-            municipality: Municipality,
-            district: District,
-            province: Province,
+            village: Optional[Village],
+            municipality: Optional[Municipality],
+            district: Optional[District],
+            province: Optional[Province],
             patient: Patient
     ):
         self.address = address

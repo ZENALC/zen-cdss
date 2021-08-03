@@ -4,11 +4,11 @@ Patient and other related tables.
 from datetime import date
 from typing import Optional, Union
 
-from dateutil import parser
 from sqlalchemy import Column, Date, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
 from backend.database.base import Base
+from backend.database.utils import parse_date
 
 
 class Patient(Base):  # pylint: disable=too-few-public-methods
@@ -24,6 +24,9 @@ class Patient(Base):  # pylint: disable=too-few-public-methods
     gender = Column(String(1))
     date_of_birth = Column(Date)
     registration_date = Column(Date)
+    referred_by = Column(String)
+    accompanied_by = Column(String)
+    family_diabetics = Column(String)
 
     def __init__(
             self,
@@ -32,12 +35,18 @@ class Patient(Base):  # pylint: disable=too-few-public-methods
             gender: str,
             date_of_birth: Union[str, date],
             registration_date: Optional[Union[str, date]] = None,
+            referred_by: str = None,
+            accompanied_by: str = None,
+            family_diabetics: str = None
     ):
         self.first_name = first_name
         self.last_name = last_name
         self.gender = self.parse_gender(gender)
-        self.date_of_birth = self.parse_date(date_of_birth)
-        self.registration_date = self.parse_date(registration_date, null_ok=True)
+        self.date_of_birth = parse_date(date_of_birth)
+        self.registration_date = parse_date(registration_date, null_ok=True)
+        self.referred_by = referred_by
+        self.accompanied_by = accompanied_by
+        self.family_diabetics = family_diabetics
 
     @staticmethod
     def parse_gender(gender: str) -> str:
@@ -55,21 +64,23 @@ class Patient(Base):  # pylint: disable=too-few-public-methods
 
         raise ValueError(f'Expected gender to be "M" or "F". Got: {gender}')
 
-    @staticmethod
-    def parse_date(date_object: Union[str, date], null_ok: bool = False) -> date:
-        """
-        Helper function to parse dates and return as date objects.
-        :param null_ok: Boolean whether null date objects are valid or not.
-        :param date_object: Date object to parse.
-        :return: Parsed date object.
-        """
-        if isinstance(date_object, date):
-            return date_object
 
-        if date_object is None and null_ok:
-            return date.today()
+class Diagnosis(Base):  # pylint: disable=too-few-public-methods
+    """
+    Diagnosis table.
+    """
+    __tablename__ = "diagnosis"
 
-        return parser.parse(date_object).date()
+    id = Column(Integer, primary_key=True)
+    diagnosis = Column(String)
+    advent = Column(Date)
+
+    patient_id = Column(Integer, ForeignKey("patient.id"))
+    patient = relationship("Patient", backref="diagnosis")
+
+    def __init__(self, diagnosis: str, advent: Union[str, date] = None):
+        self.diagnosis = diagnosis
+        self.advent = parse_date(advent)
 
 
 class ContactDetails(Base):  # pylint: disable=too-few-public-methods
