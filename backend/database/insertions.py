@@ -3,9 +3,9 @@ Miscellaneous functions to leverage to insert to the database.
 """
 from typing import Any, Dict, Optional
 
-from backend.database.base import Base, Session, engine
+from backend.database.base import Base, engine
 from backend.database.tables.address import Address, District, Municipality, Province, Village
-from backend.database.tables.patient import ContactDetails, Patient
+from backend.database.tables.patient import Company, ContactDetails, Diagnosis, Occupation, OccupationTitle, Patient
 from backend.database.utils import session_scope, yield_helper
 
 
@@ -29,6 +29,40 @@ def create_entry(table: Base, accessor: str, value: str, existing_session=None) 
             return table(value)
 
         return result.pop()  # Only one object should exist, so pop it off and return it.
+
+
+def add_occupation(patient_dict: Dict[str, Any], patient: Patient, existing_session=None) -> Occupation:
+    """
+    Add occupation.
+    :param patient_dict: Patient dictionary with occupation details.
+    :param patient: Patient object to link occupation to.
+    :param existing_session: Preexisting session to leverage to avoid creating new sessions (if provided).
+    :return: Occupation object.
+    """
+    context_manager = session_scope if existing_session is None else lambda: yield_helper(existing_session)
+    with context_manager() as session:
+        description = patient_dict['occupation_description']
+
+        occupation_title = create_entry(table=OccupationTitle,
+                                        accessor='occupation_title',
+                                        value=patient_dict.get('occupation_title'),
+                                        existing_session=session)
+        company = create_entry(table=Company,
+                               accessor='company',
+                               value=patient_dict.get('company'),
+                               existing_session=session)
+
+        occupation = Occupation(
+            patient=patient,
+            description=description,
+            company=company,
+            occupation_title=occupation_title
+        )
+
+        if existing_session is None:  # Only add the object if we just created the session object.
+            session.add(occupation)
+
+        return occupation
 
 
 def add_patient(patient_dict: Dict[str, Any]):
@@ -74,6 +108,28 @@ def add_contact_details(patient_dict: Dict[str, Any], patient: Patient, existing
             session.add(contact_details)
 
         return contact_details
+
+
+def add_diagnosis(patient_dict: Dict[str, Any], patient: Patient, existing_session=None):
+    """
+    Add diagnosis.
+    :param patient_dict: Patient dictionary with diagnosis data.
+    :param patient: Patient object to link diagnosis details to.
+    :param existing_session: Preexisting session to leverage to avoid creating new sessions (if provided).
+    :return: Diagnosis object.
+    """
+    context_manager = session_scope if existing_session is None else lambda: yield_helper(existing_session)
+    with context_manager() as session:
+        diagnosis = Diagnosis(
+            diagnosis=patient_dict['diagnosis'],
+            advent=patient.get('diagnosis_advent'),
+            patient=patient
+        )
+
+        if existing_session is None:  # Only add the object if we just created the session object.
+            session.add(diagnosis)
+
+        return diagnosis
 
 
 def add_address(patient_dict: Dict[str, Any], patient: Patient, existing_session=None) -> Address:
@@ -122,27 +178,3 @@ p_dict = {
 }
 
 add_patient(p_dict)
-
-
-def x():
-    """
-    Will remove soon, only here for testing.
-    :return:
-    """
-    # Creating a new session.
-    session1 = Session()
-
-    province = Province("province")
-    village1 = Village("village")
-    municipality1 = Municipality("some-municipality")
-    district1 = District("district")
-
-    patient = Patient("Mihir", "Shrestha", "M", "Sep 26 1998")
-    Address("2 reserve", village1, municipality1, district1, province, patient)
-
-    session1.add(patient)
-    session1.commit()
-    session1.close()
-
-    provinces = session1.query(Province).filter(Province.province == "province").all()
-    [print(province.id) for province in provinces]

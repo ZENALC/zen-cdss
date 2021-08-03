@@ -78,9 +78,10 @@ class Diagnosis(Base):  # pylint: disable=too-few-public-methods
     patient_id = Column(Integer, ForeignKey("patient.id"))
     patient = relationship("Patient", backref="diagnosis")
 
-    def __init__(self, diagnosis: str, advent: Union[str, date] = None):
+    def __init__(self, diagnosis: str, patient: Patient, advent: Union[str, date] = None):
         self.diagnosis = diagnosis
         self.advent = parse_date(advent)
+        self.patient = patient
 
 
 class ContactDetails(Base):  # pylint: disable=too-few-public-methods
@@ -123,6 +124,12 @@ class Occupation(Base):  # pylint: disable=too-few-public-methods
     company_id = Column(Integer, ForeignKey("company.id"))
     company = relationship("Company", backref="occupation")
 
+    def __init__(self, patient: Patient, description: str, occupation_title: str, company: str):
+        self.patient = patient
+        self.description = description
+        self.occupation_title = occupation_title
+        self.company = company
+
 
 class OccupationTitle(Base):  # pylint: disable=too-few-public-methods
     """
@@ -133,6 +140,9 @@ class OccupationTitle(Base):  # pylint: disable=too-few-public-methods
     id = Column(Integer, primary_key=True)
     occupation_title = Column(String)
 
+    def __init__(self, occupation_title: str):
+        self.occupation_title = occupation_title
+
 
 class Company(Base):  # pylint: disable=too-few-public-methods
     """
@@ -142,3 +152,6 @@ class Company(Base):  # pylint: disable=too-few-public-methods
 
     id = Column(Integer, primary_key=True)
     company = Column(String)
+
+    def __init__(self, company: str):
+        self.company = company

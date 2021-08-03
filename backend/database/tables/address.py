@@ -100,7 +100,7 @@ class Address(Base):  # pylint: disable=too-few-public-methods
 
     def __init__(
             self,
-            address: Optional[str],
+            address: str,
             village: Optional[Village],
             municipality: Optional[Municipality],
             district: Optional[District],
