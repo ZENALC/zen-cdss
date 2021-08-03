@@ -5,6 +5,9 @@ max-args = 10
 # Good variable names which should always be accepted, separated by a comma.
 good-names=tg
 
+[DESIGN]
+max-attributes=12
+
 [MASTER]
 jobs=4
 
