@@ -1,5 +1,5 @@
 """
-Address related tables for patients.
+Address related models for patients.
 """
 from typing import Optional
 
@@ -7,7 +7,7 @@ from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import backref, relationship
 
 from backend.database.base import Base
-from backend.database.tables.patient import Patient
+from backend.database.models.patient import Patient
 
 
 class Village(Base):  # pylint: disable=too-few-public-methods

@@ -4,8 +4,8 @@ Miscellaneous functions to leverage to insert to the database.
 from typing import Any, Dict, Optional
 
 from backend.database.base import Base, engine
-from backend.database.tables.address import Address, District, Municipality, Province, Village
-from backend.database.tables.patient import Company, ContactDetails, Diagnosis, Occupation, OccupationTitle, Patient
+from backend.database.models.address import Address, District, Municipality, Province, Village
+from backend.database.models.patient import Company, ContactDetails, Diagnosis, Occupation, OccupationTitle, Patient
 from backend.database.utils import session_scope, yield_helper
 
 

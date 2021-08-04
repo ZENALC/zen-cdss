@@ -21,11 +21,12 @@ def yield_helper(to_yield: Any) -> Any:
 
 
 @contextmanager
-def session_scope():
+def session_scope(session_object=Session):
     """
     Provide a transactional scope around a series of operations.
+    :param session_object: Session object to instantiate.
     """
-    session = Session()
+    session = session_object()
     try:
         yield session
         session.commit()

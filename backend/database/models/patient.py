@@ -1,5 +1,5 @@
 """
-Patient and other related tables.
+Patient and other related models.
 """
 from datetime import date
 from typing import Optional, Union
