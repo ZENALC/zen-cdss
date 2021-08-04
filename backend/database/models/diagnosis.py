@@ -26,10 +26,10 @@ class Diagnosis(Base):  # pylint: disable=too-few-public-methods
     patient_id = Column(Integer, ForeignKey("patient.id"))
     patient = relationship("Patient", backref="diagnosis")
 
-    def __init__(self, diagnosis: str, patient: Patient, advent: Union[str, date] = None):
+    def __init__(self, diagnosis: str, advent: Union[str, date], patient: Patient):
         self.diagnosis = diagnosis
         self.advent = parse_date(advent)
         self.patient = patient
 
     def __repr__(self):
-        return f'Diagnosis(diagnosis={self.diagnosis}, advent={self.advent}, patient={self.patient})'
+        return f'Diagnosis(diagnosis="{self.diagnosis}", advent="{self.advent}", patient={self.patient})'

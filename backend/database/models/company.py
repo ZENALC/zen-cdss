@@ -20,4 +20,4 @@ class Company(Base):  # pylint: disable=too-few-public-methods
         self.company = company
 
     def __repr__(self):
-        return f'Company(company={self.company})'
+        return f'Company(company="{self.company}")'

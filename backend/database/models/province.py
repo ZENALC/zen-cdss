@@ -20,4 +20,4 @@ class Province(Base):  # pylint: disable=too-few-public-methods
         self.province = province
 
     def __repr__(self):
-        return f'Province(province={self.province})'
+        return f'Province(province="{self.province}")'

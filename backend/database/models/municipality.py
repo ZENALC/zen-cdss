@@ -20,4 +20,4 @@ class Municipality(Base):  # pylint: disable=too-few-public-methods
         self.municipality = municipality
 
     def __repr__(self):
-        return f'Municipality(municipality={self.municipality})'
+        return f'Municipality(municipality="{self.municipality}")'

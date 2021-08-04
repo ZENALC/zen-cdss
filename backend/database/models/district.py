@@ -20,4 +20,4 @@ class District(Base):  # pylint: disable=too-few-public-methods
         self.district = district
 
     def __repr__(self):
-        return f'District(district={self.district})'
+        return f'District(district="{self.district}")'

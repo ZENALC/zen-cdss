@@ -4,11 +4,22 @@ File containing utilities for database operations.
 
 from contextlib import contextmanager
 from datetime import date
-from typing import Any, Union
+from typing import Any, Optional, Union
 
 from dateutil import parser
 
 from backend.database.base import Session
+
+
+def repr_helper(arg: Optional[str]) -> Optional[str]:
+    """
+    If argument provided is a string, return with double quotes. If it's None, then just return None.
+    :return: String or None depending on what type of argument was passed.
+    """
+    if arg is None:
+        return None
+
+    return f'"{arg}"'
 
 
 @contextmanager

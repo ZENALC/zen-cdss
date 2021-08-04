@@ -20,4 +20,4 @@ class OccupationTitle(Base):  # pylint: disable=too-few-public-methods
         self.occupation_title = occupation_title
 
     def __repr__(self):
-        return f'OccupationTitle(occupation_title={self.occupation_title})'
+        return f'OccupationTitle(occupation_title="{self.occupation_title}")'

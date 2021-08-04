@@ -8,7 +8,11 @@ from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import backref, relationship
 
 from backend.database.base import Base
-from backend.database.models import District, Municipality, Patient, Province, Village
+from backend.database.models.district import District
+from backend.database.models.municipality import Municipality
+from backend.database.models.patient import Patient
+from backend.database.models.province import Province
+from backend.database.models.village import Village
 
 
 class Address(Base):  # pylint: disable=too-few-public-methods
@@ -52,5 +56,5 @@ class Address(Base):  # pylint: disable=too-few-public-methods
         self.patient = patient
 
     def __repr__(self):
-        return f'Address(address={self.address}, village={self.village}, municipality={self.municipality}, ' \
+        return f'Address(address="{self.address}", village={self.village}, municipality={self.municipality}, ' \
                f'district={self.district}, province={self.province}, patient={self.patient})'

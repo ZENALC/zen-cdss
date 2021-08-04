@@ -34,4 +34,4 @@ class ContactDetails(Base):  # pylint: disable=too-few-public-methods
         self.patient = patient
 
     def __repr__(self):
-        return f'ContactDetails(phone_number={self.phone_number}, email={self.email}, patient={self.patient})'
+        return f'ContactDetails(phone_number="{self.phone_number}", email="{self.email}", patient={self.patient})'
