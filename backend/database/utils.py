@@ -1,6 +1,7 @@
 """
 File containing utilities for database operations.
 """
+
 from contextlib import contextmanager
 from datetime import date
 from typing import Any, Union

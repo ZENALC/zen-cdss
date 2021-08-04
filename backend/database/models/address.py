@@ -1,77 +1,14 @@
 """
-Address related models for patients.
+Address model.
 """
+
 from typing import Optional
 
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import backref, relationship
 
 from backend.database.base import Base
-from backend.database.models.patient import Patient
-
-
-class Village(Base):  # pylint: disable=too-few-public-methods
-    """
-    Village table.
-    """
-    __tablename__ = "village"
-
-    id = Column(Integer, primary_key=True)
-    village = Column(String(50))
-
-    def __init__(
-            self,
-            village: str
-    ):
-        self.village = village
-
-
-class Municipality(Base):  # pylint: disable=too-few-public-methods
-    """
-    Municipality table.
-    """
-    __tablename__ = "municipality"
-
-    id = Column(Integer, primary_key=True)
-    municipality = Column(String(50))
-
-    def __init__(
-            self,
-            municipality: str
-    ):
-        self.municipality = municipality
-
-
-class District(Base):  # pylint: disable=too-few-public-methods
-    """
-    District table.
-    """
-    __tablename__ = "district"
-
-    id = Column(Integer, primary_key=True)
-    district = Column(String(50))
-
-    def __init__(
-            self,
-            district: str
-    ):
-        self.district = district
-
-
-class Province(Base):  # pylint: disable=too-few-public-methods
-    """
-    Province table.
-    """
-    __tablename__ = "province"
-
-    id = Column(Integer, primary_key=True)
-    province = Column(String(50))
-
-    def __init__(
-            self,
-            province: str
-    ):
-        self.province = province
+from backend.database.models import District, Municipality, Patient, Province, Village
 
 
 class Address(Base):  # pylint: disable=too-few-public-methods
@@ -113,3 +50,7 @@ class Address(Base):  # pylint: disable=too-few-public-methods
         self.district = district
         self.province = province
         self.patient = patient
+
+    def __repr__(self):
+        return f'Address(address={self.address}, village={self.village}, municipality={self.municipality}, ' \
+               f'district={self.district}, province={self.province}, patient={self.patient})'

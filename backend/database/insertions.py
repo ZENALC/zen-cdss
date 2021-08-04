@@ -1,11 +1,12 @@
 """
 Miscellaneous functions to leverage to insert to the database.
 """
+
 from typing import Any, Dict, Optional
 
 from backend.database.base import Base, engine
-from backend.database.models.address import Address, District, Municipality, Province, Village
-from backend.database.models.patient import Company, ContactDetails, Diagnosis, Occupation, OccupationTitle, Patient
+from backend.database.models import (Address, Company, ContactDetails, Diagnosis, District, Municipality, Occupation,
+                                     OccupationTitle, Patient, Province, Village)
 from backend.database.utils import session_scope, yield_helper
 
 
