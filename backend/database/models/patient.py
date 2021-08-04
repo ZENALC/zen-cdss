@@ -49,11 +49,11 @@ class Patient(Base):  # pylint: disable=too-few-public-methods
         self.family_diabetics = family_diabetics
 
     def __repr__(self) -> str:
-        r = repr_helper
+        r_h = repr_helper
         return f'Patient(first_name="{self.first_name}", last_name="{self.last_name}", gender="{self.gender}", ' \
                f'date_of_birth="{self.date_of_birth}", registration_date="{self.registration_date}", ' \
-               f'referred_by={r(self.referred_by)}, accompanied_by={r(self.accompanied_by)}, ' \
-               f'family_diabetics={r(self.family_diabetics)})'
+               f'referred_by={r_h(self.referred_by)}, accompanied_by={r_h(self.accompanied_by)}, ' \
+               f'family_diabetics={r_h(self.family_diabetics)})'
 
     @staticmethod
     def parse_gender(gender: str) -> str:

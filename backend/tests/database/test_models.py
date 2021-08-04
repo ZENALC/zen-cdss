@@ -54,6 +54,7 @@ def test_repr(test_obj):
     Test the __repr__() function for the models. Mainly being tested to assert that they initialize correctly.
     :param test_obj: Test object.
     """
+    # pylint: disable=eval-used
     original_repr = repr(test_obj)
 
     generated_obj = eval(repr(test_obj))

@@ -2,6 +2,8 @@
 Initialization by importing all models.
 """
 
+# pylint: disable=unused-import
+
 from backend.database.models.address import Address
 from backend.database.models.company import Company
 from backend.database.models.contact_details import ContactDetails
