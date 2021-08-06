@@ -119,8 +119,30 @@ def test_patient():
             district=District("hello district"),
             patient=patient
         )
-
         session.add(address)
+
+        contact_details = ContactDetails(
+            phone_number="781-200-000",
+            email="patient@gmail.com",
+            patient=patient
+        )
+        session.add(contact_details)
+
+        diagnosis = Diagnosis(
+            diagnosis="lung cancer",
+            advent="October 12, 2015",
+            patient=patient
+        )
+        session.add(diagnosis)
+
+        occupation = Occupation(
+            description="This is some position",
+            occupation_title=OccupationTitle("farmer"),
+            patient=patient,
+            company=Company("EV Farming")
+        )
+        session.add(occupation)
+
         session.commit()
 
         result_patient: Patient = get_latest_row(session, Patient)
@@ -133,6 +155,9 @@ def test_patient():
         assert result_patient.accompanied_by == patient.accompanied_by
         assert result_patient.family_diabetics == patient.family_diabetics
         assert result_patient.address[0] is address
+        assert result_patient.contact_details[0] is contact_details
+        assert result_patient.diagnosis[0] is diagnosis
+        assert result_patient.occupation[0] is occupation
 
 
 def test_address():

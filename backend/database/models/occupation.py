@@ -26,6 +26,9 @@ class Occupation(Base):  # pylint: disable=too-few-public-methods
     company_id = Column(Integer, ForeignKey("company.id"))
     company = relationship("Company", backref="occupation")
 
+    patient_id = Column(Integer, ForeignKey("patient.id"))
+    patient = relationship("Patient", backref="occupation")
+
     def __init__(self, patient: Patient, description: str, occupation_title: OccupationTitle, company: Company):
         self.patient = patient
         self.description = description
