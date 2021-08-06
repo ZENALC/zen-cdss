@@ -9,6 +9,7 @@ pandas = "*"
 uvicorn = "*"
 sqlalchemy = "*"
 openpyxl = "*"
+selenium = "*"
 
 [dev-packages]
 pylint = "*"

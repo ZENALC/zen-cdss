@@ -6,3 +6,6 @@
 
 # Ignore all data related files.
 data/
+
+# Selenium folders
+selenium/
