@@ -4,7 +4,7 @@ File containing utilities for database operations.
 
 from contextlib import contextmanager
 from datetime import date
-from typing import Any, Optional, Union
+from typing import Any, Optional, Type, Union
 
 from dateutil import parser
 
@@ -33,7 +33,7 @@ def yield_helper(to_yield: Any) -> Any:
 
 
 @contextmanager
-def session_scope(session_object=Session):
+def session_scope(session_object=Type[Session]) -> Session:
     """
     Provide a transactional scope around a series of operations.
     :param session_object: Session object to instantiate.

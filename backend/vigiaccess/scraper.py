@@ -31,8 +31,8 @@ def dump_to_json(data: Dict[str, List[str]], path: str):
     :param data: Data to dump.
     :param path: Where to dump data.
     """
-    with open(path, 'w') as f:
-        json.dump(data, f, indent=4)
+    with open(path, 'w') as open_file:
+        json.dump(data, open_file, indent=4)
 
 
 def scrape_adr(drug: str):
