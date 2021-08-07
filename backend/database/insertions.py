@@ -4,7 +4,7 @@ Miscellaneous functions to leverage to insert to the database.
 
 from typing import Any, Dict, Optional
 
-from backend.database.base import Base, engine
+from backend.database.base import Base
 from backend.database.models import (Address, Company, ContactDetails, Diagnosis, District, Municipality, Occupation,
                                      OccupationTitle, Patient, Province, Village)
 from backend.database.utils import session_scope, yield_helper
@@ -162,20 +162,3 @@ def add_address(patient_dict: Dict[str, Any], patient: Patient, existing_session
             session.add(address)
 
         return address
-
-
-# Generating the database schema.
-Base.metadata.create_all(engine)
-p_dict = {
-    'first_name': 'John',
-    'last_name': 'Doe',
-    'gender': 'Male',
-    'date_of_birth': 'May 13 1992',
-    'village': "some village",
-    'province': 'some province',
-    'address': "some address",
-    'email': 'john@gmail.com',
-    'phone': '7819991231'
-}
-
-add_patient(p_dict)
