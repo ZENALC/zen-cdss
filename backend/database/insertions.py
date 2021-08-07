@@ -16,6 +16,10 @@ def create_entry(table: Base, accessor: str, value: Optional[str], existing_sess
     """
     Creates an entry in the table provided. Regardless of whether it created one or not, it will return the
     object that matches the arguments passed.
+
+    Note that this only works with tables that take in one argument and should only be used with one-column tables
+    that should not have duplicates like companies, occupation titles, provinces, etc.
+
     :param table: Table to create an entry in.
     :param accessor: Accessor to filter table with.
     :param value: Value to populate the new entry with.
@@ -68,12 +72,14 @@ def add_occupation(patient_dict: Dict[str, Any], patient: Patient, existing_sess
         return occupation
 
 
-def add_patient(patient_dict: Dict[str, Any]):
+def add_patient(patient_dict: Dict[str, Any], existing_session: Session = None) -> Patient:
     """
     Add patients through this function to the database.
     :param patient_dict: Dictionary containing patient information.
+    :param existing_session: Preexisting session to leverage to avoid creating new sessions (if provided).
     """
-    with session_scope() as session:
+    context_manager = session_scope if existing_session is None else lambda: yield_helper(existing_session)
+    with context_manager() as session:
         patient = Patient(
             first_name=patient_dict['first_name'],
             last_name=patient_dict['last_name'],
@@ -86,9 +92,13 @@ def add_patient(patient_dict: Dict[str, Any]):
         )
 
         add_address(patient_dict=patient_dict, patient=patient, existing_session=session)
-        add_contact_details(patient_dict=patient_dict, patient=patient)
+        add_contact_details(patient_dict=patient_dict, patient=patient, existing_session=session)
+        add_occupation(patient_dict=patient_dict, patient=patient, existing_session=session)
+        add_diagnosis(patient_dict=patient_dict, patient=patient, existing_session=session)
 
         session.add(patient)
+
+        return patient
 
 
 def add_contact_details(patient_dict: Dict[str, Any], patient: Patient, existing_session=None) -> ContactDetails:
@@ -113,7 +123,7 @@ def add_contact_details(patient_dict: Dict[str, Any], patient: Patient, existing
         return contact_details
 
 
-def add_diagnosis(patient_dict: Dict[str, Any], patient: Patient, existing_session=None):
+def add_diagnosis(patient_dict: Dict[str, Any], patient: Patient, existing_session: Session = None) -> Diagnosis:
     """
     Add diagnosis.
     :param patient_dict: Patient dictionary with diagnosis data.
