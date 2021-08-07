@@ -4,24 +4,36 @@ Testing insertions.
 
 
 def test_create_entry():
-    pass
+    """
+    Test the create entry function.
+    """
 
 
 def test_add_occupation():
-    pass
+    """
+    Test the add occupation function.
+    """
 
 
 def test_add_patient():
-    pass
+    """
+    Test the add patient function.
+    """
 
 
 def test_add_contact_details():
-    pass
+    """
+    Test the add contact details function.
+    """
 
 
 def test_add_diagnosis():
-    pass
+    """
+    Test the add diagnosis function.
+    """
 
 
 def test_add_address():
-    pass
+    """
+    Test the add address function.
+    """
