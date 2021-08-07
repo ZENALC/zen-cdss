@@ -8,11 +8,12 @@ from typing import Any, Optional, Type, Union
 
 from dateutil import parser
 from sqlalchemy import desc
+from sqlalchemy.orm import Session
 
-from backend.database.base import Base, Session
+from backend.database import base
 
 
-def get_latest_row(session: Session, object_class: Type) -> Base:
+def get_latest_row(session: Session, object_class: Type) -> base.Base:
     """
     Get the latest row by ID.
     :param session: Session object to use to get the latest row.
@@ -44,7 +45,7 @@ def yield_helper(to_yield: Any) -> Any:
 
 
 @contextmanager
-def session_scope(session_object: Type[Session] = Session) -> Session:
+def session_scope(session_object: Type[Session] = base.Session) -> Session:
     """
     Provide a transactional scope around a series of operations.
     :param session_object: Session object to instantiate.

@@ -4,13 +4,15 @@ Miscellaneous functions to leverage to insert to the database.
 
 from typing import Any, Dict, Optional
 
+from sqlalchemy.orm import Session
+
 from backend.database.base import Base
 from backend.database.models import (Address, Company, ContactDetails, Diagnosis, District, Municipality, Occupation,
                                      OccupationTitle, Patient, Province, Village)
 from backend.database.utils import session_scope, yield_helper
 
 
-def create_entry(table: Base, accessor: str, value: str, existing_session=None) -> Optional[Base]:
+def create_entry(table: Base, accessor: str, value: str, existing_session: Session = None) -> Optional[Base]:
     """
     Creates an entry in the table provided. Regardless of whether it created one or not, it will return the
     object that matches the arguments passed.
