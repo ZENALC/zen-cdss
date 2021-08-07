@@ -7,8 +7,19 @@ from datetime import date
 from typing import Any, Optional, Type, Union
 
 from dateutil import parser
+from sqlalchemy import desc
 
-from backend.database.base import Session
+from backend.database.base import Base, Session
+
+
+def get_latest_row(session: Session, object_class: Type) -> Base:
+    """
+    Get the latest row by ID.
+    :param session: Session object to use to get the latest row.
+    :param object_class: Object class to get the latest row of.
+    :return: Latest row of the object class provided.
+    """
+    return session.query(object_class).order_by(desc('id')).first()
 
 
 def repr_helper(arg: Optional[str]) -> Optional[str]:

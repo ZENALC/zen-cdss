@@ -3,17 +3,16 @@ File contain tests for database classes.
 """
 import datetime
 import os
-from typing import Type
 
 import pytest
-from sqlalchemy import create_engine, desc
-from sqlalchemy.orm import Session, sessionmaker
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 import backend.database.base as backend_base
 from backend import TEST_DB_PATH
 from backend.database.models import (Address, Company, ContactDetails, Diagnosis, District, Municipality, Occupation,
                                      OccupationTitle, Patient, Province, Village)
-from backend.database.utils import session_scope
+from backend.database.utils import get_latest_row, session_scope
 
 TEST_ENGINE = create_engine(f'sqlite:///{TEST_DB_PATH}')
 TEST_SESSION = sessionmaker(bind=TEST_ENGINE)
@@ -47,16 +46,6 @@ def get_dummy_patient() -> Patient:
         accompanied_by="no one",
         family_diabetics="no one"
     )
-
-
-def get_latest_row(session: Session, object_class: Type) -> backend_base.Base:
-    """
-    Get the latest row by ID.
-    :param session: Session object to use to get the latest row.
-    :param object_class: Object class to get the latest row of.
-    :return: Latest row of the object class provided.
-    """
-    return session.query(object_class).order_by(desc('id')).first()
 
 
 @pytest.mark.parametrize(
