@@ -9,3 +9,6 @@ data/
 
 # Selenium folders
 selenium/
+
+.mypy_cache/
+.pytest_cache/
