@@ -4,9 +4,9 @@ Testing insertions.
 import os
 
 import backend.database.base as backend_base
-from backend.database.insertions import create_entry, add_occupation
-from backend.database.models import Village, Occupation, Patient
-from backend.database.utils import session_scope, get_latest_row
+from backend.database.insertions import add_occupation, create_entry
+from backend.database.models import Occupation, Patient, Village
+from backend.database.utils import get_latest_row, session_scope
 from backend.tests.database import TEST_DB_PATH, TEST_ENGINE, TEST_SESSION
 
 
