@@ -33,7 +33,7 @@ def yield_helper(to_yield: Any) -> Any:
 
 
 @contextmanager
-def session_scope(session_object=Type[Session]) -> Session:
+def session_scope(session_object: Type[Session] = Session) -> Session:
     """
     Provide a transactional scope around a series of operations.
     :param session_object: Session object to instantiate.
