@@ -4,10 +4,17 @@ Testing insertions.
 import os
 
 import backend.database.base as backend_base
-from backend.database.insertions import add_occupation, create_entry
-from backend.database.models import Occupation, Patient, Village
-from backend.database.utils import get_latest_row, session_scope
+from backend.database.insertions import add_address, add_contact_details, add_diagnosis, add_occupation, create_entry
+from backend.database.models import Patient, Village
+from backend.database.utils import session_scope
 from backend.tests.database import TEST_DB_PATH, TEST_ENGINE, TEST_SESSION
+
+TEST_PATIENT = Patient(  # Leverage this dummy patient for the tests below.
+    first_name='J',
+    last_name='D',
+    date_of_birth='05-05-2005',
+    gender='F',
+)
 
 
 def setup_module():
@@ -49,26 +56,13 @@ def test_add_occupation():
     Test the add occupation function.
     """
     with session_scope(TEST_SESSION) as session:
-        patient = Patient(
-            first_name='J',
-            last_name='D',
-            date_of_birth='05-05-2005',
-            gender='F',
-        )
-
         occupation = add_occupation({
             'occupation_description': 'some description pertaining occupations',
             'occupation_title': 'CEO',
             'company': 'Evil Corp'
-        }, patient=patient, existing_session=session)
+        }, patient=TEST_PATIENT, existing_session=session)
 
-        session.add(occupation)
-        session.commit()
-
-        occupation_result = get_latest_row(session, Occupation)
-        patient_result = get_latest_row(session, Patient)
-
-        assert patient_result.occupation[0] is occupation_result
+        assert TEST_PATIENT.occupation[0] is occupation
 
 
 def test_add_patient():
@@ -81,15 +75,39 @@ def test_add_contact_details():
     """
     Test the add contact details function.
     """
+    with session_scope(TEST_SESSION) as session:
+        contact_details = add_contact_details({
+                'email': 'some@gmail.com',
+                'phone': '781-202-2020',
+            }, patient=TEST_PATIENT, existing_session=session)
+
+        assert TEST_PATIENT.contact_details[0] is contact_details
 
 
 def test_add_diagnosis():
     """
     Test the add diagnosis function.
     """
+    with session_scope(TEST_SESSION) as session:
+        diagnosis = add_diagnosis({
+            'diagnosis': 'lung cancer',
+            'diagnosis_advent': "Sep 5 2009"
+        }, patient=TEST_PATIENT, existing_session=session)
+
+        assert TEST_PATIENT.diagnosis[0] is diagnosis
 
 
 def test_add_address():
     """
     Test the add address function.
     """
+    with session_scope(TEST_SESSION) as session:
+        address = add_address({
+            'address': 'some address',
+            'village': 'some village',
+            'municipality': 'some municipality',
+            'province': 'some province',
+            'district': 'some district'
+        }, patient=TEST_PATIENT, existing_session=session)
+
+        assert TEST_PATIENT.address[0] is address

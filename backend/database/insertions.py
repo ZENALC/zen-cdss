@@ -135,7 +135,7 @@ def add_diagnosis(patient_dict: Dict[str, Any], patient: Patient, existing_sessi
     with context_manager() as session:
         diagnosis = Diagnosis(
             diagnosis=patient_dict['diagnosis'],
-            advent=patient.get('diagnosis_advent'),
+            advent=patient_dict.get('diagnosis_advent'),
             patient=patient
         )
 
