@@ -91,13 +91,7 @@ def add_patient(patient_dict: Dict[str, Any], existing_session: Session = None) 
             family_diabetics=patient_dict.get('family_diabetics')
         )
 
-        add_address(patient_dict=patient_dict, patient=patient, existing_session=session)
-        add_contact_details(patient_dict=patient_dict, patient=patient, existing_session=session)
-        add_occupation(patient_dict=patient_dict, patient=patient, existing_session=session)
-        add_diagnosis(patient_dict=patient_dict, patient=patient, existing_session=session)
-
         session.add(patient)
-
         return patient
 
 
