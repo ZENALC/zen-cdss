@@ -14,5 +14,6 @@ selenium/
 .mypy_cache/
 .pytest_cache/
 
-# JS node modules
+# JavaScript related items
 node_modules/
+/frontend/build/
