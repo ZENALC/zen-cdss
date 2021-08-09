@@ -20,11 +20,15 @@ function MainNavbar() {
               <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
             </NavDropdown>
           </Nav>
+          <Form className="d-flex">
+            <FormControl
+              type="text"
+              placeholder="Patient Search"
+              className="mr-2"
+            />
+            <Button variant="outline-success">Search</Button>
+          </Form>
         </Navbar.Collapse>
-        <Form>
-          <FormControl type="text" placeholder="Patient Search" className="mr-sm-2" />
-          <Button variant="outline-success">Search</Button>
-        </Form>
       </Container>
     </Navbar>
   );
