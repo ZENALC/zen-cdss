@@ -1,5 +1,5 @@
 import {
-  Button, Container, Form, FormControl, Nav, Navbar, NavDropdown,
+  Container, Nav, Navbar, NavDropdown,
 } from 'react-bootstrap';
 import React from 'react';
 
@@ -12,22 +12,12 @@ function MainNavbar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link href="#home">Home</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item>Action</NavDropdown.Item>
-              <NavDropdown.Item>Another action</NavDropdown.Item>
-              <NavDropdown.Item>Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+            <NavDropdown title="Patient" id="basic-nav-dropdown">
+              <NavDropdown.Item>Add</NavDropdown.Item>
+              <NavDropdown.Item>Search</NavDropdown.Item>
+              <NavDropdown.Item>Import</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Form className="d-flex">
-            <FormControl
-              type="text"
-              placeholder="Patient Search"
-              className="mr-2"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form>
         </Navbar.Collapse>
       </Container>
     </Navbar>
