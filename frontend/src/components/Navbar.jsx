@@ -1,21 +1,32 @@
 import {
   Container, Nav, Navbar, NavDropdown,
 } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import React from 'react';
 
 function MainNavbar() {
   return (
     <Navbar expand="lg" variant="dark" bg="dark">
       <Container>
-        <Navbar.Brand href="#home">ZEN CDSS</Navbar.Brand>
+        <LinkContainer to="/home">
+          <Navbar.Brand>ZEN CDSS</Navbar.Brand>
+        </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
+            <LinkContainer to="/home">
+              <Nav.Link>Home</Nav.Link>
+            </LinkContainer>
             <NavDropdown title="Patient" id="basic-nav-dropdown">
-              <NavDropdown.Item>Add</NavDropdown.Item>
-              <NavDropdown.Item>Search</NavDropdown.Item>
-              <NavDropdown.Item>Import</NavDropdown.Item>
+              <LinkContainer to="/add_patient">
+                <NavDropdown.Item>Add</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/view_patient">
+                <NavDropdown.Item>View</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/import_patient">
+                <NavDropdown.Item>Import</NavDropdown.Item>
+              </LinkContainer>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
