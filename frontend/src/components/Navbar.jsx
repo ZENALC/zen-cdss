@@ -8,13 +8,13 @@ function MainNavbar() {
   return (
     <Navbar expand="lg" variant="dark" bg="dark">
       <Container>
-        <LinkContainer to="/home">
+        <LinkContainer to="/">
           <Navbar.Brand>ZEN CDSS</Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <LinkContainer to="/home">
+            <LinkContainer to="/">
               <Nav.Link>Home</Nav.Link>
             </LinkContainer>
             <NavDropdown title="Patient" id="basic-nav-dropdown">
