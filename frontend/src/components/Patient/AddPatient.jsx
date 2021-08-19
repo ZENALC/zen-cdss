@@ -2,7 +2,10 @@ import React from 'react';
 
 function AddPatient() {
   return (
-    <h1>Add a patient.</h1>
+    <>
+      <br />
+      <h3>Add Patient</h3>
+    </>
   );
 }
 
