@@ -7,59 +7,72 @@ function PatientForm() {
   return (
     <div className="patient-form" style={{ width: '85%', margin: 'auto' }}>
 
+      <h5>Basics</h5>
       <Form>
-
-        <h5>Basic Information</h5>
-
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGridFirstName">
-            <Form.Label>First Name</Form.Label>
+        <Form.Group as={Row} className="mb-3" controlId="formFirstName">
+          <Form.Label column sm={2}>First Name</Form.Label>
+          <Col sm={10}>
             <Form.Control placeholder="Enter first name" />
-          </Form.Group>
+          </Col>
+        </Form.Group>
 
-          <Form.Group as={Col} controlId="formGridLastName">
-            <Form.Label>Last Name</Form.Label>
+        <Form.Group as={Row} className="mb-3" controlId="formLastName">
+          <Form.Label column sm={2}>Last Name</Form.Label>
+          <Col sm={10}>
             <Form.Control placeholder="Enter last name" />
-          </Form.Group>
-        </Row>
+          </Col>
+        </Form.Group>
 
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGridGender">
-            <Form.Label>Gender</Form.Label>
+        <Form.Group as={Row} className="mb-3" controlId="formGridGender">
+          <Form.Label column sm={2}>Gender</Form.Label>
+          <Col sm={10}>
             <Form.Select defaultValue="Select...">
               <option>Select...</option>
               <option>Male</option>
               <option>Female</option>
             </Form.Select>
-          </Form.Group>
+          </Col>
+        </Form.Group>
 
-          <Form.Group as={Col} controlId="formDateOfBirth">
-            <Form.Label>Date of Birth</Form.Label>
+        <Form.Group as={Row} className="mb-3" controlId="formDateOfBirth">
+          <Form.Label column sm={2}>Date of Birth</Form.Label>
+          <Col sm={10}>
             <Form.Control type="date" name="dob" />
-          </Form.Group>
+          </Col>
+        </Form.Group>
 
-          <Form.Group as={Col} controlId="formRegistrationDate">
-            <Form.Label>Registration Date</Form.Label>
-            <Form.Control type="date" name="registrationDate" />
-          </Form.Group>
-        </Row>
+        <Form.Group as={Row} className="mb-3" controlId="formRegistrationDate">
+          <Form.Label column sm={2}>Registration Date</Form.Label>
+          <Col sm={10}>
+            <Form.Control
+              type="date"
+              name="registrationDate"
+              value={new Date().toISOString().slice(0, 10)}
+            />
+          </Col>
+          <small>This will default to today.</small>
+        </Form.Group>
 
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formFamilyDiabetics">
-            <Form.Label>Family Diabetics</Form.Label>
-            <Form.Control placeholder="Enter relatives with diabetes" />
-          </Form.Group>
+        <Form.Group as={Row} className="mb-3" controlId="formFamilyDiabetics">
+          <Form.Label column sm={2}>Family Diabetics</Form.Label>
+          <Col sm={10}>
+            <Form.Control placeholder="Enter patient's relatives with diabetes" />
+          </Col>
+        </Form.Group>
 
-          <Form.Group as={Col} controlId="formReferredBy">
-            <Form.Label>Referred By</Form.Label>
+        <Form.Group as={Row} className="mb-3" controlId="formReferredBy">
+          <Form.Label column sm={2}>Referred By</Form.Label>
+          <Col sm={10}>
             <Form.Control placeholder="Enter who referred this patient" />
-          </Form.Group>
+          </Col>
+        </Form.Group>
 
-          <Form.Group as={Col} controlId="formAccompaniedBy">
-            <Form.Label>Accompanied By</Form.Label>
+        <Form.Group as={Row} className="mb-3" controlId="formAccompaniedBy">
+          <Form.Label column sm={2}>Accompanied By</Form.Label>
+          <Col sm={10}>
             <Form.Control placeholder="Enter who accompanied this patient" />
-          </Form.Group>
-        </Row>
+          </Col>
+        </Form.Group>
 
         <Button variant="success" type="submit">
           Add Patient
