@@ -10,6 +10,9 @@ uvicorn = "*"
 sqlalchemy = "*"
 openpyxl = "*"
 selenium = "*"
+beautifulsoup4 = "*"
+requests = "*"
+lxml = "*"
 
 [dev-packages]
 pylint = "*"
