@@ -32,7 +32,7 @@ jobs:
         run: |
           pipenv install --dev
       - name: Test with pytest
-        run: pipenv run pytest -v backend/tests/
+        run: pipenv run pytest -v zen_cdss/tests/
   lint:
     runs-on: ubuntu-latest
     steps:
