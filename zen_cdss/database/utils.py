@@ -10,7 +10,7 @@ from dateutil import parser
 from sqlalchemy import desc
 from sqlalchemy.orm import Session
 
-from backend.database import base
+from zen_cdss.database import base
 
 
 def get_latest_row(session: Session, object_class: Type) -> base.Base:

@@ -7,12 +7,12 @@ from typing import Optional
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import backref, relationship
 
-from backend.database.base import Base
-from backend.database.models.district import District
-from backend.database.models.municipality import Municipality
-from backend.database.models.patient import Patient
-from backend.database.models.province import Province
-from backend.database.models.village import Village
+from zen_cdss.database.base import Base
+from zen_cdss.database.models.district import District
+from zen_cdss.database.models.municipality import Municipality
+from zen_cdss.database.models.patient import Patient
+from zen_cdss.database.models.province import Province
+from zen_cdss.database.models.village import Village
 
 
 class Address(Base):  # pylint: disable=too-few-public-methods

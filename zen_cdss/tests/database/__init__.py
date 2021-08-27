@@ -7,7 +7,7 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from backend import ROOT_PATH
+from zen_cdss import ROOT_PATH
 
 TEST_DB_NAME = "zen_cdss_test.db"
 TEST_DB_PATH = os.path.join(ROOT_PATH, TEST_DB_NAME)

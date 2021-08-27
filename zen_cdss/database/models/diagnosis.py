@@ -8,9 +8,9 @@ from typing import Union
 from sqlalchemy import Column, Date, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
-from backend.database.base import Base
-from backend.database.models.patient import Patient
-from backend.database.utils import parse_date
+from zen_cdss.database.base import Base
+from zen_cdss.database.models.patient import Patient
+from zen_cdss.database.utils import parse_date
 
 
 class Diagnosis(Base):  # pylint: disable=too-few-public-methods

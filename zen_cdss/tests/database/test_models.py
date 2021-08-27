@@ -6,11 +6,11 @@ import os
 
 import pytest
 
-import backend.database.base as backend_base
-from backend.database.models import (Address, Company, ContactDetails, Diagnosis, District, Municipality, Occupation,
-                                     OccupationTitle, Patient, Province, Village)
-from backend.database.utils import get_latest_row, session_scope
-from backend.tests.database import TEST_DB_PATH, TEST_ENGINE, TEST_SESSION
+import zen_cdss.database.base as backend_base
+from zen_cdss.database.models import (Address, Company, ContactDetails, Diagnosis, District, Municipality, Occupation,
+                                      OccupationTitle, Patient, Province, Village)
+from zen_cdss.database.utils import get_latest_row, session_scope
+from zen_cdss.tests.database import TEST_DB_PATH, TEST_ENGINE, TEST_SESSION
 
 
 def setup_module():

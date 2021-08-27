@@ -7,8 +7,8 @@ from typing import Optional, Union
 
 from sqlalchemy import Column, Date, Integer, String
 
-from backend.database.base import Base
-from backend.database.utils import parse_date, repr_helper
+from zen_cdss.database.base import Base
+from zen_cdss.database.utils import parse_date, repr_helper
 
 
 class Patient(Base):  # pylint: disable=too-few-public-methods

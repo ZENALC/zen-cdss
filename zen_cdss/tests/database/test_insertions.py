@@ -4,12 +4,12 @@ Testing insertions.
 import os
 from datetime import datetime
 
-import backend.database.base as backend_base
-from backend.database.insertions import (add_address, add_contact_details, add_diagnosis, add_occupation, add_patient,
-                                         create_entry)
-from backend.database.models import Patient, Village
-from backend.database.utils import session_scope
-from backend.tests.database import TEST_DB_PATH, TEST_ENGINE, TEST_SESSION
+import zen_cdss.database.base as backend_base
+from zen_cdss.database.insertions import (add_address, add_contact_details, add_diagnosis, add_occupation, add_patient,
+                                          create_entry)
+from zen_cdss.database.models import Patient, Village
+from zen_cdss.database.utils import session_scope
+from zen_cdss.tests.database import TEST_DB_PATH, TEST_ENGINE, TEST_SESSION
 
 TEST_PATIENT = Patient(  # Leverage this dummy patient for the tests below.
     first_name='J',

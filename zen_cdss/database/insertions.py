@@ -6,10 +6,10 @@ from typing import Any, Dict, Optional
 
 from sqlalchemy.orm import Session
 
-from backend.database.base import Base
-from backend.database.models import (Address, Company, ContactDetails, Diagnosis, District, Municipality, Occupation,
-                                     OccupationTitle, Patient, Province, Village)
-from backend.database.utils import session_scope, yield_helper
+from zen_cdss.database.base import Base
+from zen_cdss.database.models import (Address, Company, ContactDetails, Diagnosis, District, Municipality, Occupation,
+                                      OccupationTitle, Patient, Province, Village)
+from zen_cdss.database.utils import session_scope, yield_helper
 
 
 def create_entry(table: Base, accessor: str, value: Optional[str], existing_session: Session = None) -> Optional[Base]:

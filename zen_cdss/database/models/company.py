@@ -4,7 +4,7 @@ Company model.
 
 from sqlalchemy import Column, Integer, String
 
-from backend.database.base import Base
+from zen_cdss.database.base import Base
 
 
 class Company(Base):  # pylint: disable=too-few-public-methods

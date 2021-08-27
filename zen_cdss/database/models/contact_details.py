@@ -5,8 +5,8 @@ Contact details model.
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
-from backend.database.base import Base
-from backend.database.models.patient import Patient
+from zen_cdss.database.base import Base
+from zen_cdss.database.models.patient import Patient
 
 
 class ContactDetails(Base):  # pylint: disable=too-few-public-methods
