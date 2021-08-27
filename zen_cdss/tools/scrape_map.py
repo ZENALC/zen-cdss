@@ -7,6 +7,7 @@ import ssl
 
 import pandas as pd
 
+# pylint: disable=protected-access
 ssl._create_default_https_context = ssl._create_unverified_context  # noqa - This is required for SSL in OS-X.
 URL = 'https://www.nepalgov.com/list-of-municipalities-and-rural-municipalities-english/'
 FILE_NAME = 'nepal_map.json'
@@ -17,7 +18,7 @@ def main():
     Main tool to scrape Nepalese map information.
     """
     # Initialize a dataframe with province/district/municipality information from the URL above.
-    df = pd.read_html(URL)[0]
+    df = pd.read_html(URL)[0]  # pylint: disable=invalid-name
 
     # Make the provinces a bit more clear.
     df.Province = df.Province.str.replace('1', 'Province No. 1')
@@ -40,8 +41,8 @@ def main():
         parsed_dict.setdefault(province, {}).setdefault(district, []).append(municipality)
 
     # Dump result dictionary to file name specified.
-    with open(FILE_NAME, 'w', encoding='utf-8') as f:
-        json.dump(parsed_dict, f, ensure_ascii=False, indent=4)
+    with open(FILE_NAME, 'w', encoding='utf-8') as open_file:
+        json.dump(parsed_dict, open_file, ensure_ascii=False, indent=4)
 
 
 if __name__ == '__main__':
