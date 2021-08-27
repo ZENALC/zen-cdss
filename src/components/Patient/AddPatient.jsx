@@ -1,5 +1,5 @@
 import React from 'react';
-import PatientForm from '../Forms/PatientForm';
+import PatientForm from '../Forms/Patient/PatientForm';
 
 function AddPatient() {
   return (

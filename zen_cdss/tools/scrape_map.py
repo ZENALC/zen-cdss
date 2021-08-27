@@ -2,9 +2,10 @@
 Tool to scrape province, district, and municipality information in Nepal.
 """
 
-import pandas as pd
 import json
 import ssl
+
+import pandas as pd
 
 ssl._create_default_https_context = ssl._create_unverified_context  # noqa - This is required for SSL in OS-X.
 URL = 'https://www.nepalgov.com/list-of-municipalities-and-rural-municipalities-english/'
