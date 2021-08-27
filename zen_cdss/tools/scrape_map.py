@@ -34,9 +34,10 @@ def main():
     parsed_dict = {}
     for entry in df_dict:
         province = entry.pop('Province')
-        district = entry.pop('District')
+        district = entry.pop('District').capitalize()  # It's all upper case, so just upper-case first letter.
+        municipality = entry.pop('Local Level Name')
 
-        parsed_dict.setdefault(province, {}).setdefault(district, []).append(entry.pop('Local Level Name'))
+        parsed_dict.setdefault(province, {}).setdefault(district, []).append(municipality)
 
     # Dump result dictionary to file name specified.
     with open(FILE_NAME, 'w', encoding='utf-8') as f:
